@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Algorithm Discovery With LLMs: Evolutionary Search Meets Reinforcement Learning.">
+    <meta name="keywords" content="EvoTune">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Algorithm Discovery With LLMs: Evolutionary Search Meets Reinforcement Learning</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEW0MYQM11"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-FEW0MYQM11');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/logo.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">Algorithm Discovery With LLMs: Evolutionary Search
+                            Meets Reinforcement Learning</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://people.epfl.ch/anja.surina" target="_blank">Anja
+                                    Surina</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://sites.google.com/view/amin-mansouri/" target="_blank">Amin
+                                    Mansouri</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://lars-quaedvlieg.github.io/" target="_blank">Lars
+                                    Quaedvlieg</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://people.epfl.ch/amal.seddas" target="_blank">Amal
+                                    Seddas</a><sup>1</sup>,
+                            </span><br>
+                            <span class="author-block">
+                                <a href="https://people.epfl.ch/maryna.viazovska" target="_blank">Maryna
+                                    Viazovska</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://people.epfl.ch/emmanuel.abbe" target="_blank">Emmanuel
+                                    Abbé</a><sup>1,2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://people.epfl.ch/caglar.gulcehre" target="_blank">Caglar
+                                    Gulcehre</a><sup>1</sup>
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors" style="text-align: center;">
+                            <div>
+                                <span class="author-block"><sup>1</sup>École Polytechnique Fédérale de Lausanne</span>,
+                                <span class="author-block"><sup>2</sup>Apple</span>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <img src="static/images/logo-epfl.png" alt="EPFL Logo"
+                                    style="height: 55px; margin-right: 20px;">
+                                <img src="static/images/logo-apple.png" alt="Apple Logo" style="height: 55px;">
+                            </div>
+                        </div>
+
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2504.05108" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2504.05108" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <!-- Video Link. -->
+                                <!--              <span class="link-block">-->
+                                <!--                <a href=""-->
+                                <!--                   class="external-link button is-normal is-rounded is-dark">-->
+                                <!--                  <span class="icon">-->
+                                <!--                      <i class="fab fa-youtube"></i>-->
+                                <!--                  </span>-->
+                                <!--                  <span>Video</span>-->
+                                <!--                </a>-->
+                                <!--              </span>-->
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/CLAIRE-Labo/EvoTune" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <!-- Dataset Link. -->
+                                <!--              <span class="link-block">-->
+                                <!--                <a href=""-->
+                                <!--                   class="external-link button is-normal is-rounded is-dark">-->
+                                <!--                  <span class="icon">-->
+                                <!--                      <i class="far fa-images"></i>-->
+                                <!--                  </span>-->
+                                <!--                  <span>Data</span>-->
+                                <!--                  </a>-->
+                                <!--              </span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+
+                        <p>
+                            Discovering efficient algorithms for solving complex problems has been an outstanding
+                            challenge
+                            within mathematics and computer science, requiring substantial human expertise over the
+                            years.
+                            Recent advancements in evolutionary search with large language models (LLMs) have shown
+                            promise
+                            in accelerating the discovery of algorithms across various domains, particularly in
+                            mathematics
+                            and optimization.
+                        </p>
+                        <p>
+                            However, existing approaches treat the LLM as a static generator, missing the opportunity to
+                            update the model with the signal obtained from evolutionary exploration.
+                            In this work, we propose to augment LLM-based evolutionary search by continuously refining
+                            the search operator &horbar; the LLM &horbar; through reinforcement learning (RL)
+                            fine-tuning.
+                        </p>
+                        <p>
+                            Our method leverages evolutionary search as an exploration strategy to discover improved
+                            algorithms, while RL optimizes the LLM policy based on these discoveries.
+                            Our experiments on three combinatorial optimization tasks &horbar; bin packing, traveling
+                            salesman, and the flatpack problem &horbar; show that combining RL and evolutionary search
+                            improves discovery efficiency of improved algorithms, showcasing the potential of
+                            RL-enhanced evolutionary strategies for more efficient algorithm design.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+
+            <!-- Paper video. -->
+            <!--    <div class="columns is-centered has-text-centered">-->
+            <!--      <div class="column is-four-fifths">-->
+            <!--        <h2 class="title is-3">Video</h2>-->
+            <!--        <div class="publication-video">-->
+            <!--          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"-->
+            <!--                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+            <!--        </div>-->
+            <!--      </div>-->
+            <!--    </div>-->
+            <!--/ Paper video. -->
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Method. -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <div class="column is-full-width">
+                        <h2 class="title is-3">Method Overview</h2>
+                        <img src="./static/images/method-figure.png" class="" alt="Figure of the Method." />
+                        <strong>Figure 1:</strong> The <span
+                            style="background-color:#D4F4D4; padding:0.1em 0.2em; border-radius:4px;">Evo</span><span
+                            style="background-color:#FAD4D9; padding:0.1em 0.2em; border-radius:4px;">Tune</span>
+                        framework.
+                        Candidate programs are generated by prompting the model with previously discovered successful
+                        programs. Newly generated programs are evaluated and
+                        stored in a program database. The LLM is periodically fine-tuned based on these discoveries to
+                        improve future generations.
+                    </div>
+                    <div class="columns is-centered">
+                        <div class="column is-eight-fifths">
+                            <div class="content has-text-justified">
+                                <p>
+                                    <!-- Intro -->
+                                    Efficient algorithm design is central to solving scientific challenges, yet
+                                    discovering new algorithms remains a complex and largely manual
+                                    process. Recently, large language models (LLMs) have emerged as powerful tools
+                                    capable of reasoning about problems and
+                                    generating code. This has opened up new opportunities for automating
+                                    algorithm design, particularly when combined with evolutionary search strategies
+                                    that iteratively improve candidate solutions. <strong>LLM-guided evolutionary
+                                        search</strong> methods
+                                    like
+                                    <span style="background-color:#DCEBFA; padding:0.1em 0.2em; border-radius:4px;"><a
+                                            href="https://www.nature.com/articles/s41586-023-06924-6" target="_blank"
+                                            style="text-decoration: none; color: inherit;">FunSearch
+                                            [Romera-Paredes et al., 2024]</a></span>
+                                    have shown strong results in problems ranging from mathematical
+                                    discovery to robotics and programming. However, current methods treat the LLM
+                                    as a static generator, overlooking its potential to more directly learn from the
+                                    signal
+                                    generated by the search process.
+                                </p>
+                                <p>
+                                    This paper introduces a novel approach that couples evolutionary
+                                    search with reinforcement learning (RL) to continuously train the LLM during the
+                                    search. By leveraging feedback from evolutionary exploration, the LLM is fine-tuned
+                                    to better navigate the algorithmic search space over time. This synergy between
+                                    search and learning aligns with the “Bitter Lesson” in AI, highlighting the power of
+                                    combining search and learning. The proposed method,
+                                    <span
+                                        style="background-color:#D4F4D4; padding:0.1em 0.2em; border-radius:4px;">Evo</span><span
+                                        style="background-color:#FAD4D9; padding:0.1em 0.2em; border-radius:4px;">Tune</span>,
+                                    refines the LLM policy based on the evaluation score of the programs
+                                    discovered, leading to more efficient algorithm discovery.
+
+                                </p>
+                                <p>
+                                    <span
+                                        style="background-color:#D4F4D4; padding:0.1em 0.2em; border-radius:4px;">Evo</span><span
+                                        style="background-color:#FAD4D9; padding:0.1em 0.2em; border-radius:4px;">Tune</span>
+                                    operates in two alternating phases. First, in the
+                                    <span
+                                        style="background-color:#D4F4D4; padding:0.1em 0.2em; border-radius:4px;"><strong>evolutionary
+                                            search phase</strong></span>,
+                                    a prompt is constructed by sampling from existing high-performing programs stored in
+                                    a program database. The LLM policy \( \pi_{\theta} \)
+                                    then generates new candidate programs, each of which is evaluated on problem
+                                    instances
+                                    and assigned a reward score based on its quality. Successful candidates are added to
+                                    the program database.
+                                    Periodically, the model switches to the <span
+                                        style="background-color:#FAD4D9; padding:0.1em 0.2em; border-radius:4px;"><strong>reinforcement
+                                            learning fine-tuning phase</strong></span>.
+                                    Here, the LLM policy is updated using "online" Direct Preference Optimization
+                                    (DPO), leveraging pairwise comparisons from stored programs to teach
+                                    the model how to find higer-reward regions of the search space and what kinds of
+                                    transformations lead to better performance.
+                                    By integrating RL training into the evolutionary search process,
+                                    the model gains a better understanding of the search space and therefore performs
+                                    better-targeted
+                                    search at subsequent iterations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <!--/ Experiments. -->
+
+            <section class="section" id="experiments">
+                <div class="container is-max-desktop">
+                    <h2 class="title is-3">Experiments</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We evaluate EvoTune on
+                            three combinatorial optimization tasks:
+                            <em>bin packing</em>, <em>traveling salesman</em>, and the <em>flatpack</em> problem.
+                            For each task, the goal is to discover heuristic programs that minimize the
+                            optimality gap (equivalently, maximize the reward score). We compare
+                            against static LLM baseline FunSearch, which uses only evolutionary search without training
+                            the LLM. All results are averaged over
+                            ten random seeds to account for variability.
+                        </p>
+                        <div class="has-text-centered">
+                            <img src="./static/images/reward-top-50.png" alt="Score evolution plot placeholder"
+                                style="max-width: 85%; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+                            <p class="is-size-6 has-text-grey mt-2">
+                                <strong>Figure 2:</strong> Reward score trajectories of the top 50 generated programs
+                                for
+                                <em>FlatPack</em>
+                                (left), <em>Bin Packing</em> (middle), and <em>Traveling Salesman Problem</em> (right).
+                                Shaded areas
+                                denote standard error across 10 seeds. EvoTune
+                                consistently attains higher top-50 rewards towards the end of the sampling budget,
+                                demonstrating its superior search efficiency compared to the baseline.
+                            </p><br>
+                        </div>
+                        <p>
+                            The figure above shows how the reward score of the best 50 discovered programs improve as
+                            more programs are sampled. Across all evaluated models and tasks, EvoTune accelerates the
+                            discovery of best-perfroming programs that achieive the highest scores.
+                            Notably, the performance gap between EvoTune and
+                            the baseline tends to widen with larger sampling budgets.
+                        </p>
+                        <div class="has-text-centered">
+                            <img src="./static/images/perf-table.png" alt="Performance table placeholder"
+                                style="max-width: 85%; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+                            <p class="is-size-6 has-text-grey mt-2">
+                                <strong>Table 1:</strong> Results for <em>Bin Packing</em> (top), <em>Traveling Salesman
+                                    Problem</em> (middle), and <em>FlatPack</em> (bottom). We report mean optimality
+                                gaps of the
+                                top 50 programs and standard errors across 10 seeds on validation, perturbed-validation,
+                                and
+                                test sets at three sampling budgets (9.6k, 16k and 22k sampled programs). Across all
+                                tasks and models, EvoTune
+                                consistently
+                                achieves the best results (highlighted in blue).
+                            </p><br>
+                        </div>
+
+                        <p>
+                            We evolve programs based on the score from the validation set of problem instances. To
+                            further
+                            assess the robustness and generalization of the generated programs, we evaluate their
+                            performance on the validation-perturbed and test sets. As shown in the table above, our
+                            method outperforms the baseline across all
+                            tasks and models.
+                        </p>
+                        <p>
+                            Training the LLM can reduce the diversity of its generated outputs, which poses a challenge
+                            since evolutionary search critically depends on maintaining diversity. To address this, we
+                            paid special attention to preserving diversity during training. For example, we found that
+                            using forward KL regularization was effective, full details are provided in the paper.
+
+                            To further support diverse exploration, we use an island-based approach in the program
+                            database, where different groups of programs (or “islands”) evolve independently. As shown
+                            in the figure below, this strategy leads to structured clusters of programs that gradually
+                            diverge from the initial seed as the sampling budget increases. Programs within the same
+                            island tend to display greater
+                            semantic similarity compared to those across different islands.
+                        </p>
+                        <div class="has-text-centered">
+                            <img src="./static/images/tsne_grid_evotune.png" alt="Performance table placeholder"
+                                style="max-width: 100%; margin-bottom: -40px;">
+                            <p class="is-size-6 has-text-grey mt-2">
+                                <strong>Figure 3:</strong> t-SNE visualizations of program embeddings produced by
+                                EvoTune across three tasks (<em>bin packing</em>, <em>traveling salesman problem</em>,
+                                <em>flatpack</em>), using representations from a pre-trained NeoBERT encoder. In the top
+                                rows, programs are colored by their assigned island in the program
+                                database; in the bottom rows, coloring reflects the timestep of their discovery. For
+                                each task, programs are taken from the best-performing model and seed.
+                            </p><br>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="case-studies">
+                <div class="container is-max-desktop">
+                    <h2 class="title is-3">EvoTune in Action</h2>
+                    <p class="has-text-justified">
+                        To illustrate how <strong>EvoTune</strong> works in practice, we showcase the evolution
+                        of the best performing programs, revealing how solutions emerge and improve.
+                        We also show the progression of score distributions of programs within the
+                        program database. Initially, the score distributions of EvoTune and the baseline are similar.
+                        However, as the search
+                        progresses, EvoTune generates a larger number of high-quality solutions as reflected by the
+                        larger increase in the lower optimality gap region. This highlights EvoTune’s ability to more
+                        effectively explore the solution space and accelerate the discovery of best-performing programs.
+                    </p>
+
+
+
+                    </p><br>
+                    <div class="columns is-multiline">
+                        <div class="column is-12">
+                            <div class="case-study-card">
+                                <h3 class="title is-4">Bin Packing</h3>
+                                <div class="columns is-variable is-4">
+                                    <div class="column is-half">
+                                        <video muted playsinline controls preload="metadata">
+                                            <source src="./static/videos/bin_func_evo.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="has-text-centered is-size-7 mt-1">Evolution of the best-performing
+                                            program over multiple rounds</p>
+                                    </div>
+                                    <div class="column is-half">
+                                        <video muted playsinline controls preload="metadata">
+                                            <source src="./static/videos/bin_hist_evo.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="has-text-centered is-size-7 mt-1">Evolution of program
+                                            score
+                                            distributions across rounds</p>
+                                    </div>
+                                </div>
+                                <!--                            <p>-->
+                                <!--                            TODO: Specify model, etc. config for this one-->
+                                <!--                                For FlatPack, we show how discovered heuristics become more structured and effective-->
+                                <!--                                over time. The score distribution shifts toward higher rewards, indicating efficient-->
+                                <!--                                exploration of the solution space beyond baseline methods.-->
+                                <!--                            </p>-->
+                            </div>
+                        </div>
+                        <div class="column is-12">
+                            <div class="case-study-card">
+                                <h3 class="title is-4">Travelling Salesman Problem</h3>
+                                <div class="columns is-variable is-4">
+                                    <div class="column is-half">
+                                        <video muted playsinline controls preload="metadata">
+                                            <source src="./static/videos/tsp_func_evo.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="has-text-centered is-size-7 mt-1">Evolution of the best-performing
+                                            program over multiple rounds</p>
+                                    </div>
+                                    <div class="column is-half">
+                                        <video muted playsinline controls preload="metadata">
+                                            <source src="./static/videos/tsp_hist_evo.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="has-text-centered is-size-7 mt-1">Evolution of program
+                                            score
+                                            distributions across rounds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12">
+                            <div class="case-study-card">
+                                <h3 class="title is-4">FlatPack Problem</h3>
+                                <div class="columns is-variable is-4">
+                                    <div class="column is-half">
+                                        <video muted playsinline controls preload="metadata">
+                                            <source src="./static/videos/flatpack_func_evo.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="has-text-centered is-size-7 mt-1">Evolution of the best-performing
+                                            program over multiple rounds</p>
+                                    </div>
+                                    <div class="column is-half">
+                                        <video muted playsinline controls preload="metadata">
+                                            <source src="./static/videos/flatpack_hist_evo.mp4" type="video/mp4">
+                                        </video>
+                                        <p class="has-text-centered is-size-7 mt-1">Evolution of program
+                                            score
+                                            distributions across rounds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+    </section>
+
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@article{surina2025algorithm,
+  title={Algorithm Discovery With LLMs: Evolutionary Search Meets Reinforcement Learning},
+  author={Surina, Anja and Mansouri, Amin and Quaedvlieg, Lars and Seddas, Amal and Viazovska, Maryna and Abbe, Emmanuel and Gulcehre, Caglar},
+  journal={arXiv preprint arXiv:2504.05108},
+  year={2025}
+}</code></pre>
+        </div>
+    </section>
+
+
+    <section class="section" id="references">
+        <div class="container is-max-desktop">
+            <h2 class="title is-3">References</h2>
+            <div class="content">
+                <p>
+                    Romera-Paredes, B., Barekatain, M., Novikov, A., Balog, M., Kumar, M. P., Dupont, E., ... &amp;
+                    Fawzi,
+                    A. (2024).
+                    <em>Mathematical discoveries from program search with large language models</em>.
+                    <em>Nature</em>, <em>625</em> (7995), 468–475.
+                    <a href="https://www.nature.com/articles/s41586-023-06924-6"
+                        target="_blank">https://www.nature.com/articles/s41586-023-06924-6</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <a class="icon-link" target="_blank" href="https://arxiv.org/pdf/2504.05108">
+                    <i class="fas fa-file-pdf"></i>
+                </a>
+                <a class="icon-link" href="https://github.com/CLAIRE-Labo/EvoTune" target="_blank" class="external-link"
+                    disabled>
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This website template was forked from <a href="https://github.com/nerfies/nerfies.github.io"
+                                target="_blank">
+                                Nerfies</a> and is licensed under a <a rel="license" target="_blank"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.case-study-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelectorAll('video').forEach(video => video.play());
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.querySelectorAll('video').forEach(video => {
+                    video.pause();
+                    // video.currentTime = 0; // reset video
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
