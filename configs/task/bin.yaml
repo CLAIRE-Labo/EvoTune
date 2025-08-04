@@ -1,0 +1,14 @@
+# Task bin
+task_name: "bin"
+function_str_to_extract: "priority"
+Weibull: 0
+OR: 1
+init_best_fit: 1
+
+failed_score: -20000
+timeout_period: 60
+mem_limit_gb: 10
+
+programdatabaseConfig:
+  temp: 40.0
+initial_percentile: 0.3

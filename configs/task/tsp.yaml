@@ -1,0 +1,12 @@
+# Task tsp
+task_name: "tsp"
+function_str_to_extract: "heuristics"
+identity_heuristic: 1
+
+failed_score: -20000
+timeout_period: 90
+mem_limit_gb: 10
+
+programdatabaseConfig:
+  temp: 10.0
+initial_percentile: 0.3

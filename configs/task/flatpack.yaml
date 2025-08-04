@@ -1,0 +1,14 @@
+# Task flatpack
+task_name: "flatpack"
+function_str_to_extract: "priority"
+train_set_path: "data/flat_pack/train_flatpack_dynamic_0_seed.json"  # Make sure you're running from the project root
+train_perturbed_set_path: "data/flat_pack/train_perturbed_flatpack_0_seed.json"
+test_set_path: "data/flat_pack/test_flatpack_dynamic_0_seed.json"
+init_equal: 1
+
+failed_score: -20000
+timeout_period: 60
+mem_limit_gb: 10
+
+programdatabaseConfig:
+  temp: 4.0

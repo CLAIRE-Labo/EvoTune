@@ -1,0 +1,15 @@
+name: packing
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - hatchling
+      - editables
+      - hydra-core
+      - tqdm
+      - wandb
+      - pre-commit
+      - black
+prefix: /opt/conda/envs/packing

@@ -1,0 +1,17 @@
+# `apt` runtime requirements file.
+# These dependencies are required to run your code.
+build-essential     # Likely needed.
+ca-certificates     # Likely needed.
+curl                # Useful.
+git                 # Likely needed.
+htop                # Useful.
+htop                # Useful.
+netcat              # Useful.
+openssl             # Required.
+sudo                # Required to open ssh server.
+tmux                # Useful.
+tree                # Useful.
+vim                 # Useful.
+wget                # Useful.
+zsh                 # Required.
+

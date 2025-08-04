@@ -1,0 +1,5 @@
+model_name: "qwensmall"
+temperature: 0.7
+topk: 100
+topp: 0.95
+max_tokens: 2048

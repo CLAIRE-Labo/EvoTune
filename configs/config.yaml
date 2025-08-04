@@ -1,0 +1,78 @@
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job_logging:
+    root:
+      level: INFO
+    formatters:
+      simple:
+        format: '[%(levelname)s] %(message)s'
+  sweep:
+    dir: logs/${prefix}/${run_identifier_name}_${seed}
+    subdir: ${hydra.job.num}
+
+defaults:
+  - cluster: example
+  - task: bin
+  - model: llama32
+  - train: dpo
+  - _self_
+
+# LLM settings
+multiple_models: 0
+creative_prompt: 1
+descending_order: 1
+gpu_nums: 0 # On which GPU index to put the model when launching the server
+flash_attn: 0
+
+# Program database
+programdatabaseConfig:
+  functions_per_prompt: 2
+  num_islands: 6 #5
+  temp_sampling_flag: 1
+  temp: ${task.programdatabaseConfig.temp}
+initial_percentile: 0.6
+final_percentile: 0.2
+
+# Timing config
+num_cont_rounds: 100
+num_outputs_per_prompt: 8
+num_workers: 12
+num_rounds: 2701
+
+# Finetuning
+finetuning_frequency: ${train.finetuning_frequency}
+lr_annealing: 0
+one_tuning: 1
+percentile: 70
+max_loops: 1
+accelerate_config: 1gpu
+
+lora_config:
+  r: 64
+  lora_alpha: 32
+
+# Evaluation settings
+eval_frequency: 100
+evalset: trainperturbedset
+testset: testset
+top_k_functions_for_test: 50
+# Leave these below the same to allow for immediate eval from the training log dirs
+function_str_to_extract: ${task.function_str_to_extract}
+wandb_name: ${prefix}/${run_identifier_name}_${seed}
+group_name: ${prefix}/${run_identifier_name}
+logs_path: .
+logs_dir: out/logs/${prefix}/${task.task_name}_${run_identifier_name}_${seed}
+
+# Wandb settings
+project: "project_name"
+entity: project_entity
+
+# Other settings
+seed: 0
+run_identifier_name: ${task.task_name}_${model.model_name}_${train.train_method_name}
+prefix: example
+run_or_dev: dev
+use_tgi: ${cluster.use_tgi}
+use_vllm: ${cluster.use_vllm}

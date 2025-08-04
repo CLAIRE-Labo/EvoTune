@@ -1,0 +1,4 @@
+seed|train|model|task
+0|dpo|llama32|bin
+1|dpo|llama32|bin
+0|none|granite|flatpack

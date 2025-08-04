@@ -1,0 +1,5 @@
+seed|task|train|model|function_str_to_extract|eval_frequency
+0|bin|none|llama32|priority|[100, 500]
+1|bin|none|llama32|priority|[100, 500]
+2|bin|none|llama32|priority|[100, 500]
+3|bin|none|llama32|priority|[100, 500]

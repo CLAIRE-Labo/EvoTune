@@ -1,0 +1,2 @@
+train_method_name: "none"
+finetuning_frequency: 10000000000 # Never finetune
