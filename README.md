@@ -81,7 +81,7 @@ To create the Python environment for running experiments, use one of the provide
 installation/
 ├── docker-amd64-cuda-tgi/   # For x86_64 machines using TGI
 ├── docker-amd64-cuda-vllm/  # For x86_64 machines using vLLM
-├── docker-arm64-cuda/       # For ARM64 machines using vLLM
+└── docker-arm64-cuda/       # For ARM64 machines using vLLM
 ```
 
 > Most experiments for the paper were run using **A100 GPUs (80GB)**.
