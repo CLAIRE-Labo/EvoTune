@@ -1,4 +1,4 @@
-# Installation with Docker (or any OCI container engine)
+# Installation with Docker
 
 ## More details on the setup
 
@@ -86,17 +86,10 @@ cd installation/docker-amd64-cuda-vllm
       Edit them so that they match the user permissions on the mounted volumes, otherwise you can leave them as is.
       (If you're deploying locally, i.e., where you're building, these values should be filled correctly by default.)
 
-2. Pull or build the generic image.
+2. Build the generic image.
    This is the image with root as user.
    It will be named according to the image name in your `.env`.
-   It will be tagged with `<platform>-root-latest` and if you're building it,
-   it will also be tagged with the latest git commit hash `<platform>-root-<sha>` and `<platform>-root-<sha>`.
-    - Pull the generic image if it's available.
-      ```bash
-      # Pull the generic image if available.
-      ./template.sh pull_generic TODO ADD PULL_IMAGE_NAME (private or public).
-      ```
-    - Otherwise, build it.
+   It will be tagged with `<platform>-root-latest` and the latest git commit hash `<platform>-root-<sha>` and `<platform>-root-<sha>`.
       ```bash
       ./template.sh build_generic
       ```
@@ -111,7 +104,7 @@ cd installation/docker-amd64-cuda-vllm
     ./template.sh empty_interactive
    ```
 
-4. Build the image configured for your user. (Not needed to run in containers with new namespaces like for the SCITAS and CSCS clusters)
+4. Build the image configured for your user.
    ```bash
    ./template.sh build_user
    ```
