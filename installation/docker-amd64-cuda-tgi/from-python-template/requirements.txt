@@ -1,7 +1,0 @@
-hatchling # To build the package without isolation in edit mode for faster startup.
-editables # Same as above.
-hydra-core
-tqdm
-wandb
-pre-commit
-black

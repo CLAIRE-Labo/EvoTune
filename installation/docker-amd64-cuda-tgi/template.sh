@@ -303,41 +303,8 @@ dev() {
   $COMPOSE -p "${COMPOSE_PROJECT}" run --rm "${detach[@]}" "${env_vars[@]}" "dev-local-${ACCELERATION}" "$@"
 }
 
-get_runai_scripts() {
-  # Rename the runai examples.
-  # ./template.sh get_runai_scripts
-  check
-  cp -r "./EPFL-runai-setup/template-submit-examples/" "./EPFL-runai-setup/submit-scripts"
-  for file in $(find "./EPFL-runai-setup/submit-scripts" -type f); do
-    sed -i.deleteme "s/moalla/${USR}/g" "$file" && rm "${file}.deleteme"
-    sed -i.deleteme "s/claire/${LAB_NAME}/g" "$file" && rm "${file}.deleteme"
-  done
-}
-
-get_scitas_scripts() {
-  # Rename the scitas examples.
-  # ./template.sh get_scitas_scripts
-  check
-  cp -r "./EPFL-SCITAS-setup/template-submit-examples/" "./EPFL-SCITAS-setup/submit-scripts"
-    for file in $(find "./EPFL-SCITAS-setup/submit-scripts" -type f); do
-    sed -i.deleteme "s/moalla/${USR}/g" "$file" && rm "${file}.deleteme"
-    sed -i.deleteme "s/claire/${LAB_NAME}/g" "$file" && rm "${file}.deleteme"
-  done
-}
-
-get_cscs_scripts() {
-  # Rename the scitas examples.
-  # ./template.sh get_scitas_scripts
-  check
-  cp -r "./CSCS-Todi-setup/template-submit-examples/" "./CSCS-Todi-setup/submit-scripts"
-  for file in $(find "./CSCS-Todi-setup/submit-scripts" -type f); do
-    sed -i.deleteme "s/smoalla/${USR}/g" "$file" && rm "${file}.deleteme"
-    sed -i.deleteme "s/claire/${LAB_NAME}/g" "$file" && rm "${file}.deleteme"
-  done
-}
-
 usage() {
-  echo "Usage: $0 {env|pull_generic|build_generic|build_user|build|push_generic|push_user|push|list_env|empty_interactive|run|dev|get_runai_scripts}"
+  echo "Usage: $0 {env|pull_generic|build_generic|build_user|build|push_generic|push_user|push|list_env|empty_interactive|run|dev}"
 
   # Describe each function with its arguments.
   echo "env: Create the .env file with the user-specific variables."
@@ -353,9 +320,6 @@ usage() {
   echo "empty_interactive: Start an interactive shell in an empty container."
   echo "run -e VAR1=VAL1 -e VAR2=VAL2 ... COMMAND: Run a command in a new runtime container."
   echo "dev -e VAR1=VAL1 -e VAR2=VAL2 ... COMMAND: Run a command in a new development container."
-  echo "get_runai_scripts: Rename the runai examples."
-  echo "get_scitas_scripts: Rename the scitas examples."
-  echo "get_cscs_scripts: Rename the cscs examples."
 }
 
 if [ $# -eq 0 ]; then
