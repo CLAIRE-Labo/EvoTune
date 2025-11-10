@@ -18,16 +18,14 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Partition: $SLURM_JOB_PARTITION"
 echo "Number of GPUs: $SLURM_GPUS_ON_NODE"
 
-# Load necessary modules (adjust based on your OSC setup)
-# OSC typically has these modules available:
-module load cuda/12.1.1  # Or latest CUDA version available
-module load python/3.10  # Or your preferred Python version
+# Load necessary modules
+module load python/3.10
+module load cuda/12.1.1
 
-# Activate your environment (either conda or the Docker container)
-# Option A: If using conda environment
-# source activate evotune
+# Activate conda environment (RECOMMENDED for OSC)
+conda activate evotune
 
-# Option B: If using Apptainer/Singularity with Docker image
+# Alternative: If using Apptainer/Singularity container instead
 # apptainer run --nv <your_docker_image.sif> ...
 
 # Set environment variables
