@@ -9,9 +9,47 @@ echo "EvoTune Setup for OSC Ascend"
 echo "================================"
 
 # Step 1: Load required modules
-echo "Step 1: Loading modules..."
-module load python/3.10
-module load cuda/12.1.1  # Or whatever latest CUDA version is available
+echo "Step 1: Finding and loading modules..."
+
+# Find available Python module
+echo "Available Python modules:"
+module spider python 2>/dev/null | grep "python/" || echo "  Use 'module spider python' to see available versions"
+
+# Find available CUDA module
+echo ""
+echo "Available CUDA modules:"
+module spider cuda 2>/dev/null | grep "cuda/" || echo "  Use 'module spider cuda' to see available versions"
+
+echo ""
+echo "Attempting to load modules..."
+# Try to load Python (adjust version if needed)
+if module load python/3.10 2>/dev/null; then
+    echo "✓ Loaded python/3.10"
+elif module load python 2>/dev/null; then
+    echo "✓ Loaded default python"
+else
+    echo "✗ Could not load Python module. Please load manually:"
+    echo "  module avail python"
+    echo "  module load python/<version>"
+    exit 1
+fi
+
+# Try to load CUDA (try multiple versions)
+CUDA_LOADED=false
+for cuda_ver in cuda/12.1.1 cuda/12.1 cuda/12 cuda/11.8 cuda; do
+    if module load $cuda_ver 2>/dev/null; then
+        echo "✓ Loaded $cuda_ver"
+        CUDA_LOADED=true
+        break
+    fi
+done
+
+if [ "$CUDA_LOADED" = false ]; then
+    echo "✗ Could not load CUDA module. Please load manually:"
+    echo "  module avail cuda"
+    echo "  module load cuda/<version>"
+    exit 1
+fi
 
 # Step 2: Create conda environment
 echo "Step 2: Creating conda environment..."

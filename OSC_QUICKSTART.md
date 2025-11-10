@@ -6,29 +6,40 @@
 
 On OSC Ascend, **use Conda/Pip** instead of Docker (Docker daemon not available to regular users).
 
-### 1. One-Command Setup
+### 0. Check Available Modules (Do This First!)
 
 ```bash
 # On OSC Ascend login node
 cd /path/to/EvoTune
+bash scripts/check_osc_modules.sh
+```
+
+This will show you what Python and CUDA versions are available on OSC.
+
+### 1. One-Command Setup
+
+```bash
 bash scripts/setup_osc_conda.sh
 ```
 
 This script will:
-- Load necessary modules (Python 3.10, CUDA 12.1)
+- Automatically detect and load available Python/CUDA modules
 - Create conda environment named `evotune`
 - Install PyTorch with CUDA support
 - Install vLLM
 - Install all dependencies
 - Install EvoTune package
 
+The script tries multiple CUDA versions (12.1.1, 12.1, 12, 11.8) until it finds one that works.
+
 **Time:** ~10-15 minutes
 
 ### 2. Manual Setup (if script fails)
 
 ```bash
-# Load modules
-module load python/3.10 cuda/12.1.1
+# Load modules (check available versions first with 'module avail python' and 'module avail cuda')
+module load python/3.10  # or whatever version is available
+module load cuda/12.1    # or 11.8, 12, etc. - use what's available on your system
 
 # Create environment
 conda create -n evotune python=3.10 -y
@@ -57,7 +68,8 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 sinteractive -A <your_project> -p quad -g 1 -t 1:00:00
 
 # Load modules and activate environment
-module load python/3.10 cuda/12.1.1
+module load python/3.10  # or your available version
+module load cuda/12.1    # or your available version
 conda activate evotune
 
 # Set Python path
@@ -132,13 +144,32 @@ apptainer build evotune.sif Dockerfile
 
 ### Common Issues
 
-**1. "module: command not found"**
+**1. "The following module(s) are unknown: cuda/12.1.1" or similar**
+
+The CUDA/Python version specified doesn't exist on your OSC system.
+
+**Solution:**
+```bash
+# Check what's actually available
+module avail python
+module avail cuda
+
+# Or use the helper script
+bash scripts/check_osc_modules.sh
+
+# Then load the available version, for example:
+module load cuda/11.8  # if this is what's available
+```
+
+The updated setup script now automatically tries multiple versions!
+
+**2. "module: command not found"**
 ```bash
 # Add to your ~/.bashrc on OSC:
 source /etc/profile.d/lmod.sh
 ```
 
-**2. "conda: command not found"**
+**3. "conda: command not found"**
 ```bash
 # Load Anaconda module first:
 module load python/3.10
@@ -146,17 +177,17 @@ module load python/3.10
 source /usr/local/anaconda3/etc/profile.d/conda.sh
 ```
 
-**3. "CUDA out of memory"**
+**4. "CUDA out of memory"**
 - Reduce `num_workers` in config
 - Reduce `num_outputs_per_prompt`
 - Request more GPU memory (use A100 80GB nodes)
 
-**4. "ModuleNotFoundError: No module named 'packing'"**
+**5. "ModuleNotFoundError: No module named 'packing'"**
 ```bash
 export PYTHONPATH=src:$PYTHONPATH
 ```
 
-**5. vLLM installation fails**
+**6. vLLM installation fails**
 ```bash
 # Try with specific CUDA version:
 pip install vllm --extra-index-url https://download.pytorch.org/whl/cu121

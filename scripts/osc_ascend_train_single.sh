@@ -19,8 +19,10 @@ echo "Partition: $SLURM_JOB_PARTITION"
 echo "Number of GPUs: $SLURM_GPUS_ON_NODE"
 
 # Load necessary modules
-module load python/3.10
-module load cuda/12.1.1
+# Note: Adjust versions based on what's available on your OSC system
+# Use 'module avail python' and 'module avail cuda' to see options
+module load python/3.10 || module load python
+module load cuda/12.1.1 || module load cuda/12.1 || module load cuda/12 || module load cuda/11.8 || module load cuda
 
 # Activate conda environment (RECOMMENDED for OSC)
 conda activate evotune
