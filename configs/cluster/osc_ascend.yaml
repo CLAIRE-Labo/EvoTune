@@ -1,0 +1,10 @@
+# OSC Ascend Cluster Configuration
+# Ohio Supercomputer Center - Ascend GPU Cluster
+# Hardware: AMD EPYC CPUs + NVIDIA A100 GPUs
+
+# Set your scratch path on OSC (typically /fs/scratch/<project_id>/<username>)
+scratch_path: "$PFSDIR"  # OSC uses PFSDIR environment variable, or set explicitly
+
+# Inference engine selection
+use_tgi: 0
+use_vllm: 1  # Using vLLM for OSC Ascend
