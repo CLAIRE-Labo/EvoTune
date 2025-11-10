@@ -22,7 +22,7 @@ echo "Number of GPUs: $SLURM_GPUS_ON_NODE"
 # Note: Adjust versions based on what's available on your OSC system
 # Use 'module avail python' and 'module avail cuda' to see options
 module load python/3.10 || module load python
-module load cuda/12.1.1 || module load cuda/12.1 || module load cuda/12 || module load cuda/11.8 || module load cuda
+module load cuda/12.8.1 || module load cuda/12.6.2 || module load cuda/12.4.1 || module load cuda/11.8.0 || module load cuda
 
 # Activate conda environment (RECOMMENDED for OSC)
 conda activate evotune

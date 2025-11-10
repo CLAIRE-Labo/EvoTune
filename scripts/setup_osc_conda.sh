@@ -34,9 +34,9 @@ else
     exit 1
 fi
 
-# Try to load CUDA (try multiple versions)
+# Try to load CUDA (try multiple versions - OSC Ascend specific versions)
 CUDA_LOADED=false
-for cuda_ver in cuda/12.1.1 cuda/12.1 cuda/12 cuda/11.8 cuda; do
+for cuda_ver in cuda/12.8.1 cuda/12.6.2 cuda/12.4.1 cuda/11.8.0 cuda; do
     if module load $cuda_ver 2>/dev/null; then
         echo "✓ Loaded $cuda_ver"
         CUDA_LOADED=true

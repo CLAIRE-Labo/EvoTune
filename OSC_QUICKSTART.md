@@ -30,7 +30,7 @@ This script will:
 - Install all dependencies
 - Install EvoTune package
 
-The script tries multiple CUDA versions (12.1.1, 12.1, 12, 11.8) until it finds one that works.
+The script tries multiple CUDA versions (12.8.1, 12.6.2, 12.4.1, 11.8.0) based on what's available on OSC Ascend.
 
 **Time:** ~10-15 minutes
 
@@ -38,8 +38,8 @@ The script tries multiple CUDA versions (12.1.1, 12.1, 12, 11.8) until it finds 
 
 ```bash
 # Load modules (check available versions first with 'module avail python' and 'module avail cuda')
-module load python/3.10  # or whatever version is available
-module load cuda/12.1    # or 11.8, 12, etc. - use what's available on your system
+module load python/3.10   # or whatever version is available
+module load cuda/12.8.1   # or 12.6.2, 12.4.1, 11.8.0 - use what's available on your system
 
 # Create environment
 conda create -n evotune python=3.10 -y
@@ -68,8 +68,8 @@ python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
 sinteractive -A <your_project> -p quad -g 1 -t 1:00:00
 
 # Load modules and activate environment
-module load python/3.10  # or your available version
-module load cuda/12.1    # or your available version
+module load python/3.10   # or your available version
+module load cuda/12.8.1   # or 12.6.2, 12.4.1, 11.8.0
 conda activate evotune
 
 # Set Python path
@@ -158,7 +158,7 @@ module avail cuda
 bash scripts/check_osc_modules.sh
 
 # Then load the available version, for example:
-module load cuda/11.8  # if this is what's available
+module load cuda/11.8.0  # OSC Ascend uses full version numbers
 ```
 
 The updated setup script now automatically tries multiple versions!
